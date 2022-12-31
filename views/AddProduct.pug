@@ -1,0 +1,13 @@
+extends AllProducts 
+
+block content
+    form(action='/product/addproduct', method='post' id="form")
+        label Name: 
+        input.form-control(type='text', value=name placeholder='Name', name="name" aria-label='Name', aria-describedby='addon-wrapping')
+        label Price: 
+        input.form-control(type='text', placeholder='Price', name="price" aria-label='Price', aria-describedby='addon-wrapping')
+        label Description: 
+        input.form-control(type='text', placeholder='Description', name="description" aria-label='Description', aria-describedby='addon-wrapping')
+        label image: 
+        input.form-control(type='text', placeholder='image', name="image" aria-label='image', aria-describedby='addon-wrapping')
+        button.btn(type="submit", form="form", value="Submit") Submit

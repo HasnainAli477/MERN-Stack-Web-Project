@@ -1,0 +1,16 @@
+extends AllProducts 
+
+block content
+    form(action=`/user/update/${user._id}`, method='post' id="form")
+        label UserName: 
+        input.form-control(type='text', placeholder='Username', value=user.name, name="name" aria-label='Username', aria-describedby='addon-wrapping')
+        label Password: 
+        input.form-control(type='password', placeholder='Password', value=pass, name="password" aria-label='Password', aria-describedby='addon-wrapping')
+        label Role: 
+        select.form-select.bg-primary.text-light(aria-label="Default select example", name="role")
+            option.h5(value="user" selected) User
+            option.h5(value="admin") Admin
+        .right
+            button.btn(type="submit", form="form", value="Submit") Update
+            if (typeof user !== 'undefined' && user.role == 'user')
+                a(href=`/user/delete/${user._id}`, onclick="document.getElementById('form').submit()").btn Delete

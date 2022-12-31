@@ -1,0 +1,22 @@
+extends AllProducts 
+
+block content 
+    h3.m-5 Your Cart 
+    table.table.table-hover 
+        thead 
+            tr 
+                th Product image 
+                th Product Name 
+                th Product Price
+        tbody  
+            each product in products 
+                tr 
+                    td
+                        img(src=`/img/${product.image}.jpg` alt='product-img', width=70, height=40)
+                    td= product.name 
+                    td= product.price 
+        tfoot 
+            tr.fs-4.fw-bold
+                td
+                td Total Bill
+                td=total

@@ -1,0 +1,14 @@
+extends AllProducts 
+
+
+block content
+    form(action=`/product/update/${Product._id}`, method='post' id="form")
+        label Name:
+        input.form-control(type='text', value=Product.name placeholder='Name', name="name", aria-label='Name', aria-describedby='addon-wrapping')
+        label Price:
+        input.form-control(type='text', placeholder='Price',value=Product.price , name="price", aria-label='Price', aria-describedby='addon-wrapping')
+        label Description:
+        input.form-control(type='text', placeholder='Description', name="description", value=Product.description  aria-label='Description', aria-describedby='addon-wrapping')
+        label image:
+        input.form-control(type='text', placeholder='image', name="image", value=Product.image aria-label='image', aria-describedby='addon-wrapping')
+        button.btn(type="submit", form="form", value="Submit") Submit

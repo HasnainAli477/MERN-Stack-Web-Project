@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+i {
+  color: red;
+}
+
+.container-fluid {
+  position: relative;
+}
+
+.left {
+  float: left;
+  display: inline;
+}
+.navbar-brand {
+  padding-left: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.left img {
+  height: 1.5rem;
+}
+
+.links_nav-bar {
+  position: absolute;
+  left: 12rem;
+}
+
+.container-fluid .links_nav-bar a,
+.right a {
+  padding-right: 1rem;
+  text-decoration: none;
+  list-style-type: none;
+  color: rgb(40, 24, 24);
+  font-size: 1.3rem;
+}
+
+#addon-wrapping {
+  display: inline-block;
+}
+
+input {
+  display: inline;
+  color: rgb(116, 73, 73);
+}
+
+.card {
+  margin-left: 2rem;
+  margin-top: 2rem;
+}
+
+.card-title span {
+  font-weight: 300;
+  font-size: 2rem;
+  color: black;
+}
+.product-card .card {
+  margin: 20px;
+  overflow: hidden;
+}
+.product-card .card .card-content {
+  padding: 5px;
+}
+.product-card .card .price {
+  width: 70px;
+  height: 70px;
+  font-weight: 600;
+  font-size: 1.45rem;
+  line-height: 70px;
+  margin: 10px;
+  position: absolute;
+  top: 0;
+  letter-spacing: 0;
+}
+.product-card ul.card-action-buttons {
+  margin: -18px 7px 0 0;
+  text-align: right;
+}
+.product-card ul.card-action-buttons li {
+  display: inline-block;
+  padding-left: 7px;
+}
+.product {
+  width: 20%;
+  padding: 10px;
+}
+.product .card {
+  margin: 0;
+}
+.product .card .card-content {
+  padding: 5px 10px;
+}
+
+button {
+  width: 7rem;
+  height: 3rem;
+  border-radius: 5%;
+  left: 1rem;
+}
+
+.right .btn {
+  position: relative;
+  margin-right: 5px;
+  left: 3%;
+  color: white;
+  border-radius: 2%;
+}
+
+#Register {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+}

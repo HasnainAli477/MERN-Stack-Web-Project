@@ -1,0 +1,16 @@
+extends AllProducts 
+
+block content
+    form(action='/user/register', method='post' id="form")
+        label Email:
+        input.form-control(type='email', placeholder='Email', name="email" aria-label='UseEmailrname', aria-describedby='addon-wrapping')
+        label Password: 
+        input.form-control(type='text', placeholder='Username', name="name" aria-label='Username', aria-describedby='addon-wrapping')
+        label UserName: 
+        input.form-control(type='password', placeholder='Password', name="password" aria-label='Password', aria-describedby='addon-wrapping')
+        label Role: 
+        //- input.form-control(type='text', placeholder='Role', name="role" aria-label='Role', aria-describedby='addon-wrapping')
+        select.form-select.bg-primary(aria-label="Default select example", name="role")
+            option.h5(value="user" selected) User
+            option.h5(value="admin") Admin
+        button.btn#Register(type="submit", form="form", value="Submit") Submit

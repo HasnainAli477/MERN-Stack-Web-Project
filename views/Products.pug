@@ -1,0 +1,44 @@
+extends AllProducts 
+
+block content
+      
+            .container
+                .row
+                    each product, i in products                 
+                        .col-lg-6.col-md-8.col-sm-12.l4.m8.s12.offset-m2.offset-l4(id=product._id)
+                            .product-card
+                                .card.z-depth-4
+                                    .card-image
+                                        a.btn-floating.btn-large.price.waves-effect.waves-light.brown.darken-3(href='#') #{product.price}/-
+                                        img(src=`/img/${product.image}.jpg` alt='product-img')
+                                        span.card-title
+                                            span #{product.name}
+                                    ul.card-action-buttons  
+                                        li
+                                            a.btn-floating.waves-effect.waves-light.red.accent-2(href='https://www.facebook.com/sharer/sharer.php?u=https://codepen.io/lybete/full/jBMNzM/' target='_blank')
+                                                //- i.sm-icon.fa-xl.fa-regular.fa-heart
+                                                i.sm-icon.fa-xl.fa-regular.fa-solid.fa-duotone.fa-share-nodes
+                                        li
+                                            a#buy.btn-floating.waves-effect.waves-light.blue(href=`/user/AddProduct/${product._id}`)
+                                                i.sm-icon.fa-xl.fa-regular.fa-cart-shopping.fa-solid
+                                    .card-content
+                                        .row
+                                            .col.s12
+                                                p
+                                                    strong Description:
+                                                    br
+                                                    |    #{product.description}
+                                        .row
+                                            div(style='width: 95%; margin: auto;')
+                                                .chip Sizes
+                                                .chip 9
+                                                .chip 8
+                                                .chip 7
+                                                .chip 6
+                                            if (typeof user !== 'undefined' && user.role == 'admin')
+                                                .right
+                                                    a(href=`/product/update/${product._id}`).btn Update
+                                                    a(href=`/product/delete/${product._id}`, onclick="document.getElementById('form').submit()").btn Delete
+                                                    form(id="form", action=`/product/delete/${product._id}`, method="delete")
+
+
