@@ -10,17 +10,18 @@ block content
                                 .card.z-depth-4
                                     .card-image
                                         a.btn-floating.btn-large.price.waves-effect.waves-light.brown.darken-3(href='#') #{product.price}/-
-                                        img(src=`/img/${product.image}.jpg` alt='product-img')
+                                        img(src=`/img/${product.image}.png` alt='product-img' height=520)
                                         span.card-title
                                             span #{product.name}
                                     ul.card-action-buttons  
                                         li
-                                            a.btn-floating.waves-effect.waves-light.red.accent-2(href='https://www.facebook.com/sharer/sharer.php?u=https://codepen.io/lybete/full/jBMNzM/' target='_blank')
+                                            a(href='https://www.facebook.com/sharer/sharer.php?u=https://codepen.io/lybete/full/jBMNzM/' target='_blank')
                                                 //- i.sm-icon.fa-xl.fa-regular.fa-heart
-                                                i.sm-icon.fa-xl.fa-regular.fa-solid.fa-duotone.fa-share-nodes
-                                        li
-                                            a#buy.btn-floating.waves-effect.waves-light.blue(href=`/user/AddProduct/${product._id}`)
-                                                i.sm-icon.fa-xl.fa-regular.fa-cart-shopping.fa-solid
+                                                //- i.sm-icon.fa-xl.fa-regular.fa-solid.fa-duotone.fa-share-nodes
+                                        if(typeof user !== 'undefined')
+                                            li
+                                                a#buy.btn-floating.waves-effect.waves-light.blue(href=`/product/AddProduct/${product._id}`)
+                                                    i.sm-icon.fa-xl.fa-regular.fa-cart-shopping.fa-solid
                                     .card-content
                                         .row
                                             .col.s12
@@ -38,7 +39,4 @@ block content
                                             if (typeof user !== 'undefined' && user.role == 'admin')
                                                 .right
                                                     a(href=`/product/update/${product._id}`).btn Update
-                                                    a(href=`/product/delete/${product._id}`, onclick="document.getElementById('form').submit()").btn Delete
-                                                    form(id="form", action=`/product/delete/${product._id}`, method="delete")
-
-
+                                                    a(href=`/product/delete/${product._id}`).btn Delete

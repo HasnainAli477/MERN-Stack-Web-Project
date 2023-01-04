@@ -1,76 +1,137 @@
 const express = require("express");
-const app = express();
 const Router = express.Router();
-const AddNewProduct = require("../controllers/ProductController/NewProduct");
-const UpdateProduct = require("../controllers/ProductController/UpdateProduct");
 const Authorization = require("../Auth/Authorization");
-const deleteProduct = require("../controllers/ProductController/DeleteProduct");
 const Authenticate = require("../Auth/Authenticate");
 const Products = require("../Models/ProductsModel");
-const cors = require("cors");
-const request = require("request");
+const Product = require("../Models/ProductsModel");
 
-app.use(cors());
+//Add new product in database
+Router.post(
+  "/addproduct",
+  Authenticate,
+  Authorization("admin"),
+  async (req, res) => {
+    let product = new Product();
+    product.name = req.body.name;
+    product.price = req.body.price;
+    product.description = req.body.description;
+    if (req.body.image) product.image = req.body.image;
+    await product.save();
+    res.redirect("/");
+  }
+);
 
-const expressStaticGzip = require("express-static-gzip");
-
-app.use("/", expressStaticGzip("build", { enableBrotli: true }));
-
-Router.post("/addproduct", Authenticate, Authorization("admin"), AddNewProduct);
-Router.get("/addproduct", (req, res) => {
+//Get new product page
+Router.get("/addproduct", Authenticate, Authorization("admin"), (req, res) => {
+  let cart = req.cookies.cart;
+  let ItemsCount = cart.length;
   res.render("AddProduct", {
     title: "Add New Product",
     user: req.session.user,
+    Items: ItemsCount,
   });
 });
 
-Router.get("/cart", async (req, res) => {
+//Get the cart
+Router.get("/cart", Authenticate, async (req, res) => {
   let cart = req.cookies.cart;
-  if (!cart) cart = [];
+  if (!cart) {
+    cart = [];
+  }
+  let ItemsCount = cart.length;
   let products = await Products.find({ _id: { $in: cart } });
 
   let total = products.reduce(
     (total, product) => total + Number(product.price),
     0
   );
-
   res.render("cart", {
     title: "Cart",
     products,
     total,
     user: req.session.user,
+    Items: ItemsCount,
   });
 });
 
-// Router.post("/React", (req, res) => {
-//   res.send();
-// });
+//Delete from cart
+Router.get("/cart/delete/:id", Authenticate, (req, res) => {
+  let cart = req.cookies.cart;
+  cart.splice(
+    cart.findIndex((c) => c == req.params.id),
+    1
+  );
+  res.cookie("cart", cart);
+  res.redirect("/product/cart");
+});
 
-Router.post("/update/:id", Authenticate, Authorization("admin"), UpdateProduct);
+//Add in cart
+Router.get("/AddProduct/:id", (req, res) => {
+  let cart = req.cookies.cart;
+  if (!cart) cart = [];
+  cart.push(req.params.id);
+  res.cookie("cart", cart);
+  res.redirect("/");
+});
+
+//Update the product
+Router.post(
+  "/update/:id",
+  Authenticate,
+  Authorization("admin"),
+  async (req, res) => {
+    let Product = await Products.findById(req.params.id);
+    Product.name = req.body.name;
+    Product.price = req.body.price;
+    Product.image = req.body.image;
+    Product.description = req.body.description;
+    await Product.save();
+    res.redirect("/");
+  }
+);
+
+//Get the update file
 Router.get(
   "/update/:id",
   Authenticate,
   Authorization("admin"),
   async (req, res) => {
     let Product = await Products.findById(req.params.id);
-    // console.log(Product);
+    let cart = req.cookies.cart;
+    let ItemsCount = cart.length;
     res.render("UpdateProduct", {
       title: "Update Page",
       Product,
+      Items: ItemsCount,
     });
   }
 );
-Router.get("/delete/:id", Authenticate, Authorization("admin"), deleteProduct);
+
+//Get the delete page
+Router.get(
+  "/delete/:id",
+  Authenticate,
+  Authorization("admin"),
+  async (req, res) => {
+    let product = await Products.findById(req.params.id);
+    await product.delete();
+    res.redirect("/");
+  }
+);
+
+// Main Page
 Router.get("/", async (req, res) => {
-  // res.cookie("jwt", null, { httpOnly: true });
   let products = await Products.find();
-  // let user = await User.findById(req.session.jwt);
-  // let jwt = req.session.jwt;
-  // console.log(req.session.user);
+  let cart = req.cookies.cart;
+  if (!cart) {
+    cart = [];
+  }
+  let ItemsCount = cart.length;
   res.render("Products", {
     title: "Overview Page",
     products,
     user: req.session.user,
+    Items: ItemsCount,
   });
 });
 

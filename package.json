@@ -11,9 +11,14 @@
     "express-static-gzip": "^2.1.7",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.1",
+    "nodemailer": "^6.8.0",
     "path": "^0.12.7",
     "pug": "^3.0.2",
     "request": "^2.88.2",
     "view": "^1.1.1"
+  },
+  "scripts": {
+    "dev": "nodemon Mainserver.js",
+    "start": "node Mainserver.js"
   }
 }

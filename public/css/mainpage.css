@@ -3,12 +3,27 @@
   padding: 0;
 }
 
-i {
+#Cart {
+  float: right;
+  position: absolute;
+  margin-left: 48%;
+}
+
+ul {
+  z-index: 4;
+}
+
+#Cart span {
+  position: absolute;
+  left: 0;
+  top: 15%;
   color: red;
 }
 
 .container-fluid {
   position: relative;
+  left: 0;
+  top: 0;
 }
 
 .left {
@@ -113,4 +128,70 @@ button {
   position: absolute;
   top: 50%;
   left: 0%;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  position: relative;
+  bottom: 0;
+  height: 5vh;
+  margin-top: 4%;
+}
+
+footer span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 20%;
+}
+
+#form1 {
+  width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f9e9c9;
+  border-radius: 5px;
+}
+
+/* Input styling */
+#email,
+#name,
+textarea {
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #d6c3a6;
+  border-radius: 5px;
+  color: #612f0e;
+}
+
+/* Button styling */
+.btn1 {
+  width: 80%;
+  background-color: #f9e9c9;
+  color: #612f0e;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.btn1:hover {
+  background-color: #e1d1b1;
 }

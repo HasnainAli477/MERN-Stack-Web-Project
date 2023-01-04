@@ -13,32 +13,45 @@ html(lang="en")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js") 
         script(src="https://kit.fontawesome.com/1546e8f138.js", crossorigin="anonymous") 
 
-    body 
+    body         
         nav.navbar.navbar-light.bg-light
             .container-fluid
                 .left 
                     img.align-text-top(src='https://png.pngtree.com/template/20191010/ourmid/pngtree-letter-h-logo-design-vector-initials-h-logo-vector-image_316833.jpg', alt='', width='30', height='24')
                     a.navbar-brand(href='/') Hasnain's Site
                 .links_nav-bar
-                    a(href="/") Home
-                    a(href='#') Contact
+                    a(href="/")
+                        i.fa-sharp.fa-solid.fa-house
+                    a(href='/user/contact') Contact
                     if (typeof user !== 'undefined')
-                        a(href=`/product/cart`) My Cart
-                    //- a(href='/product/My-Account', onclick="document.getElementById('form').submit()") React
-                    //- form(id="form", action=`/product/My-Account`, method="post")
+                        a(href=`/product/cart`, id="Cart") 
+                            if(Items>0)
+                                i.sm-icon.fa-xl.fa-regular.fa-cart-shopping.fa-solid
+                                    span.badge.bg-secondery #{Items}
+                            else 
+                                i.fa-xl.fa-light.fa-cart-plus.fa-solid
+                                    span.badge.bg-secondery #{Items}
                     if (typeof user !== 'undefined' && user.role == 'admin')
                         a(href='/product/addproduct') New Product
                 .right
                     if (!(typeof user !== 'undefined'))
-                        a(href="/user/register") Register
+                        a(href="/user/register") 
+                            //- <i class="fa-solid fa-user-plus"></i>
+                            i.fa-solid.fa-user-plus
                     if (typeof user !== 'undefined')
-                        a(href=`/user/MyAccount/${user._id}`) My Account
+                        a(href=`/user/MyAccount/${user._id}`) Account
+                                i.fa-solid.fa-user
+                        
                         
                     if(!user)
-                        a(href="/user/login") Login 
+                        a.btn(href="/user/login") Login 
+                            i.fa-solid.fa-right-to-bracket
                     else
-                        a(href="/user/logout") LogOut
+                        a.btn(href="/user/logout") LogOut
+                            i.fa-solid.fa-right-from-bracket
         block content
+        footer 
+            span &copy; Hasnain. All rights reserved
     
     script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js", integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM", crossorigin="anonymous")
             

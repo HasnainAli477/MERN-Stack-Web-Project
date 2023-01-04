@@ -2,12 +2,7 @@ const mongoose = require("mongoose");
 const ProductSchema = mongoose.Schema({
   name: {
     type: String,
-    validate: {
-      validator: function (val) {
-        if (val) return;
-      },
-      message: "The name of the product can't be empty",
-    },
+    required: [true, "A product must have name"],
   },
   price: {
     type: Number,

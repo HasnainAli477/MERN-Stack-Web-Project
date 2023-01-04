@@ -1,0 +1,15 @@
+extends AllProducts
+
+block content 
+    form(action="/user/contact" method="post" id="form1")
+        h2 Contact Us
+        p Please fill out the form below to get in touch with us.
+        label(for='name') Name:
+        input#name(type='text' name="name" placeholder='Your name')
+        label(for='email') Email:
+        input#email(type='email' name="Email" placeholder='Your email address')
+        label(for='subject') Subject:
+        input#name(type='text' name="Subject" placeholder='Subject')
+        label(for='message') Message:
+        textarea#message(placeholder='Your message' name="message")
+        button.btn1(type='submit' form="form1") Submit 

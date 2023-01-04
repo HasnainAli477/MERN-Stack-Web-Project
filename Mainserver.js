@@ -42,9 +42,8 @@ mongoose
   });
 
 app.use("/product", productrouter);
-app.use("/user", userrouter);
-
 app.use("/", productrouter);
+app.use("/user", userrouter);
 
 app.listen(config.port, function () {
   console.log("I am listening on port 3000");
